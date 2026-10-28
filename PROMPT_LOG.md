@@ -1,35 +1,19 @@
-# Registro de apoyo de IA
+# Registro de uso de inteligencia artificial
 
-Se usaron asistentes de inteligencia artificial durante todo el proyecto: para estructurar la documentación, generar una primera versión del código (API, frontend y trabajo PySpark) a partir de los contratos del docente, guiar el despliegue en AWS paso a paso y diagnosticar los fallos de EMR a partir de sus registros. El equipo ejecutó o autorizó cada acción en su cuenta de AWS y validó los resultados con el oráculo y el evaluador. Las conversaciones completas se entregan como anexos del informe.
+Durante el proyecto se usaron asistentes de inteligencia artificial como apoyo en la planificación, la documentación, el código base y la resolución de problemas del despliegue. El equipo ejecutó o autorizó cada acción en AWS, revisó el código antes de usarlo y validó los resultados con el oráculo y el evaluador entregados por el docente. Las conversaciones completas se adjuntan al informe.
 
-## Entrada 1: planificación e informe de avance, 26 de octubre de 2026
-- Solicitud: «Con lo que sabes de mi parcial. Necesito que me des los pasos y me ayudes con toda la parte de planificacion para lo que es el parcial 2».
-- Material: plan, borrador del informe de avance, diagrama de arquitectura y tabla de servicios.
-- Herramienta utilizada: Perplexity (conversación original).
-- Revisión humana: Salvatore Victorino (ajustes de formato, contenido y redacción del informe).
+| Fecha | Herramienta | Uso | Verificación del equipo |
+|---|---|---|---|
+| 26 oct | Perplexity | Planificación del parcial: arquitectura, servicios y criterios de costo. | Revisión contra el enunciado y los contratos. |
+| 26 oct | Perplexity | Borrador del informe de avance y diagrama de arquitectura. | Ajustes de contenido, formato y redacción. |
+| 26 oct | Perplexity | Código base a partir de los contratos: API, frontend, trabajo PySpark y SQL. | Pruebas locales con SQLite antes del despliegue. |
+| 27 oct | Perplexity | Guía de despliegue: EC2, bucket S3, perfil IAM y muestra de datos. | Ejecución en el Learner Lab y comprobación de cada paso. |
+| 27–28 oct | Perplexity y Claude | Configuración del clúster EMR y diagnóstico de sus fallos a partir de los registros. | Nueva ejecución de la muestra, comparada fila a fila con oracle.py. |
+| 28 oct | Claude | Tablas en Glue y Athena, conexión del endpoint y del panel, y migración a RDS PostgreSQL. | Comprobaciones de R2 y R4–R7 contra el oráculo. |
+| 28 oct | Claude | Ejecución del evaluador y actualización del informe y del repositorio. | Evaluador del docente sin modificaciones: 70/70. |
 
-## Entrada 2: paquete de implementación, 26 de octubre de 2026
-- Solicitud: «Ahora, generame o pasame los otros archivos o codigo que necesite Camila para hacer la implementacion, que ella es la que va a trabajar con AWS».
-- Material: base de API e interfaz; trabajo PySpark; SQL; scripts locales y guía de despliegue (docs/kit/).
-- Herramienta utilizada: Perplexity (conversación original).
-- Revisión humana: Salvatore Victorino durante el despliegue del 27 y 28 de octubre.
-- Validación: consultar docs/kit/VALIDACION_LOCAL.md (pruebas locales, previas a AWS).
+## Criterios de uso
 
-## Entrada 3: despliegue guiado en AWS, 27 de octubre de 2026
-- Solicitud: «Camila no puede hacer su parte. Explicame a detalle cada paso desde abrir el learner lab a como se configura TODO».
-- Material: guía paso a paso para EC2 (servicio systemd), bucket S3, perfil IAM de la instancia, muestra de datos y formulario de EMR.
-- Herramienta utilizada: Perplexity (conversación original).
-- Ejecución AWS: Salvatore Victorino, en su cuenta del Learner Lab.
-
-## Entrada 4: lote EMR, Glue, Athena y RDS, 28 de octubre de 2026
-- Solicitudes: «Usando el thread, me podrias ayudar a continuar?»; «Ahora dime como se crea lo de glue y athena como si yo supiera nada»; «Sí, usar 12345 y necesito crear RDS».
-- Material: diagnóstico de los fallos de EMR a partir de los registros de S3 (modo cluster sin memoria para el ejecutor; paso de consola sin la ruta del script; clon sin terminación automática); paso Custom JAR en modo client; DDL de Glue/Athena; conexión del endpoint y del panel; migración de SQLite a RDS PostgreSQL; scripts/verificar_athena.py y scripts/prueba_concurrencia.py.
-- Herramienta utilizada: Claude (Claude Code).
-- Ejecución AWS: Salvatore Victorino, comando por comando, revisando cada salida.
-- Validación: muestra comparada fila a fila con oracle.py; conjunto completo con 12/12 comprobaciones de R4–R7.
-
-## Entrada 5: evaluador, informe y repositorio, 28 de octubre de 2026
-- Solicitudes: «Sí, prepáralo» (evaluador en el equipo local); «Sí, actualízalo» (informe); «Sí, prepáralo» (repositorio).
-- Material: config.yaml, cost_projection.yaml, entorno local del evaluador, informe final y este repositorio.
-- Herramienta utilizada: Claude (Claude Code).
-- Validación: evaluador del docente sin modificaciones, 70/70 (report.md).
+- El código generado se revisó y se probó antes de desplegarlo; las pruebas y los archivos del docente no se modificaron.
+- Las credenciales y contraseñas no se guardaron en el código ni en el repositorio.
+- Las decisiones finales (semilla, uso de RDS, proyección de costos) las tomó el equipo.

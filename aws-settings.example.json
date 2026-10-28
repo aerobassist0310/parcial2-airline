@@ -1,0 +1,14 @@
+{
+  "region": "us-east-1",
+  "bucket": "CAMBIAR-BUCKET",
+  "database": "airline_analytics",
+  "data_prefix": "full",
+  "workgroup": "primary",
+  "emr_release_label": "CAMBIAR_VERSION_DISPONIBLE",
+  "subnet_id": "subnet-CAMBIAR",
+  "emr_service_role": "CAMBIAR_ROL_PERMITIDO",
+  "emr_ec2_instance_profile": "CAMBIAR_PERFIL_PERMITIDO",
+  "ec2_key_name": "",
+  "master_security_group": "sg-CAMBIAR",
+  "core_security_group": "sg-CAMBIAR"
+}

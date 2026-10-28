@@ -1,0 +1,17 @@
+CREATE DATABASE IF NOT EXISTS ${DATABASE};
+CREATE EXTERNAL TABLE IF NOT EXISTS ${DATABASE}.reservations_curated (
+ reservation_id string, flight_id string, route string, fare_class string,
+ price_cents bigint, status string
+)
+PARTITIONED BY (month string)
+STORED AS PARQUET
+LOCATION 's3://${BUCKET}/${DATA_PREFIX}/curated/reservations_curated/'
+TBLPROPERTIES ('classification'='parquet');
+MSCK REPAIR TABLE ${DATABASE}.reservations_curated;
+CREATE EXTERNAL TABLE IF NOT EXISTS ${DATABASE}.route_month_metrics (
+ route string, month string, seats_capacity bigint, seats_sold bigint,
+ occupancy double, revenue_cents bigint, bookings bigint, cancellations bigint
+)
+STORED AS PARQUET
+LOCATION 's3://${BUCKET}/${DATA_PREFIX}/metrics/route_month_metrics/'
+TBLPROPERTIES ('classification'='parquet');

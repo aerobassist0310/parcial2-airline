@@ -1,0 +1,5 @@
+# /etc/systemd/system/airline.service.d/rds.conf  (en el servidor: sudo chmod 600)
+# Cambia la aplicación de SQLite a RDS PostgreSQL. NO subir el archivo real: contiene la contraseña.
+[Service]
+Environment="DB_MODE=postgres"
+Environment="DATABASE_URL=host=ENDPOINT_RDS port=5432 dbname=airline user=postgres password=CAMBIAR sslmode=require"

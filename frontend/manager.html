@@ -1,0 +1,4 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Panel gerencial</title><link rel="stylesheet" href="/style.css"></head><body>
+<nav><a href="/">Reservas</a><a href="/manager">Panel gerencial</a></nav><h1>Ocupación por ruta y mes</h1><small>Datos históricos del último lote completado. No incluye reservas operativas en tiempo real.</small>
+<form id="analytics"><label>Ruta<input data-testid="manager-route" placeholder="BOG-MDE" required></label><label>Mes<input data-testid="manager-month" type="month" required></label><button data-testid="manager-load">Consultar</button></form>
+<p id="message" role="status"></p><section id="result" hidden><h2>Ocupación</h2><output data-testid="occupancy-value"></output><p id="counts"></p></section><script src="/app.js" defer></script></body></html>

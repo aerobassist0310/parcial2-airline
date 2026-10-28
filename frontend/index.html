@@ -1,0 +1,6 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Reservas aéreas</title><link rel="stylesheet" href="/style.css"></head><body>
+<nav><a href="/">Reservas</a><a href="/manager">Panel gerencial</a></nav><h1>Buscar un vuelo</h1>
+<form id="search"><label>Origen<input data-testid="search-origin" required maxlength="3"></label><label>Destino<input data-testid="search-destination" required maxlength="3"></label><label>Fecha<input type="date" data-testid="search-date" required></label><button data-testid="search-submit">Buscar</button></form>
+<p id="message" role="status"></p><section id="flights"></section>
+<form id="reserve" hidden><h2>Confirmar reserva</h2><label>Nombre del pasajero<input data-testid="passenger-name" required maxlength="200"></label><button data-testid="confirm-submit">Confirmar</button></form>
+<section id="confirmation" hidden><h2>Reserva confirmada</h2><p>Identificador:</p><p data-testid="confirmation-id"></p></section><script src="/app.js" defer></script></body></html>

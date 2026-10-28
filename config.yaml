@@ -1,0 +1,20 @@
+# Configuracion del harness. Sin credenciales: el harness usa las credenciales AWS
+# del entorno (~/.aws/credentials), igual que la AWS CLI.
+team_id: "salvatore-camila"
+seed: 12345              # el docente no asigno semilla; se uso la del ejemplo y se documenta en el informe
+
+backend:
+  base_url: "http://54.82.87.216:8000"   # actualizar si la IP publica de la EC2 cambia
+frontend:
+  base_url: "http://54.82.87.216:8000"   # el backend sirve tambien el frontend
+
+aws:
+  region: us-east-1
+  athena_workgroup: primary
+  athena_database: airline_analytics
+  athena_output: "s3://p2-airline-salvatore-20261027/athena-results/"
+  tables:
+    detail: reservations_curated        # Parquet, particionada por month (string)
+    metrics: route_month_metrics
+
+cost_projection_file: cost_projection.yaml

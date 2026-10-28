@@ -1,0 +1,9 @@
+# Proyeccion mensual (us-east-1, precios on-demand, 730 h/mes). El harness calcula el total.
+assumptions: "Uso academico: decenas de usuarios, ~2.000 busquedas/reservas y ~1.000 consultas del panel al mes. EC2 y RDS encendidos todo el mes (peor caso). Historico de ~2,09 M reservas (~90 MB CSV, ~25 MB Parquet). EMR: 1 lote mensual de ~15 min en 2 x m4.large. Athena cobra minimo 10 MB por consulta."
+line_items:
+  - {service: "EC2", detail: "t3.small 24/7 (0.0208 USD/h x 730 h) + EBS gp3 8 GB + 1 IPv4 publica (0.005 USD/h)", monthly_usd: 19.47}
+  - {service: "RDS", detail: "PostgreSQL db.t3.micro Single-AZ 24/7 (0.017 USD/h x 730 h) + 20 GB gp2", monthly_usd: 14.71}
+  - {service: "S3", detail: "~0.3 GB entre CSV, Parquet, logs EMR y resultados de Athena + solicitudes", monthly_usd: 0.10}
+  - {service: "Athena", detail: "~1.000 consultas/mes x 10 MB minimo facturable = ~10 GB a 5 USD/TB", monthly_usd: 0.10}
+  - {service: "EMR", detail: "1 ejecucion/mes, 2 x m4.large (primary + core) ~15 min: EC2 + recargo EMR + EBS", monthly_usd: 0.10}
+  - {service: "Glue", detail: "Data Catalog: 2 tablas y 24 particiones, dentro del millon de objetos gratuito", monthly_usd: 0.00}

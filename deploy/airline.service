@@ -1,0 +1,24 @@
+# Unidad systemd tal como se desplegó en la EC2 (Ubuntu 24.04).
+# Copiar a /etc/systemd/system/airline.service y ejecutar:
+#   sudo systemctl daemon-reload && sudo systemctl enable --now airline
+# Los valores de Athena y RDS se agregan con los archivos de airline.service.d/.
+[Unit]
+Description=Aplicacion de reservas del parcial 2
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/parcial2/kit_camila
+Environment="DB_MODE=sqlite"
+Environment="SQLITE_PATH=/home/ubuntu/parcial2/kit_camila/airline-local.db"
+Environment="APP_HOST=0.0.0.0"
+Environment="APP_PORT=8000"
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/home/ubuntu/parcial2/kit_camila/.venv/bin/python -m backend.app
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

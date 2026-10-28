@@ -1,0 +1,20 @@
+.venv/
+.venv-harness/
+.env
+__pycache__/
+*.pyc
+*.db
+raw/
+raw-sample/
+raw-full/
+local-output/
+salida-muestra/
+aws-settings.json
+emr-request.json
+evidence/
+# Nunca subir credenciales
+*.pem
+credentials
+.aws/
+deploy/airline.service.d/rds.conf
+.claude/
